@@ -1,2 +1,138 @@
-# classroomos-privacy-policy
-Privacy Policy for ClassroomOS - Educational center management app for coaching academies
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassroomOS Privacy Policy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+        }
+        .contact-info {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-left: 4px solid #4CAF50;
+            margin: 20px 0;
+        }
+        .last-updated {
+            font-style: italic;
+            color: #666;
+            text-align: right;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Privacy Policy for ClassroomOS</h1>
+        
+        <div class="last-updated">
+            Last updated: August 29, 2025
+        </div>
+
+        <h2>1. Introduction</h2>
+        <p>ClassroomOS ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard information when you use our educational center management application.</p>
+
+        <h2>2. Information We Collect</h2>
+        
+        <h3>Personal Information</h3>
+        <p>We collect the following personal information:</p>
+        <ul>
+            <li><strong>Student Information:</strong> Names, grade levels, contact numbers, tuition plans</li>
+            <li><strong>Payment Records:</strong> Payment amounts and dates (no credit/debit card information is stored)</li>
+            <li><strong>User Accounts:</strong> Usernames and encrypted passwords for admins, teachers, and students</li>
+            <li><strong>Attendance Data:</strong> Check-in/check-out times via QR code scanning</li>
+        </ul>
+
+        <h3>Technical Information</h3>
+        <p>We automatically collect:</p>
+        <ul>
+            <li><strong>Device Information:</strong> Device model, operating system version</li>
+            <li><strong>Usage Data:</strong> App usage patterns, login/logout times</li>
+            <li><strong>Camera Access:</strong> Only for QR code scanning purposes</li>
+        </ul>
+
+        <h2>3. How We Use Your Information</h2>
+        <p>We use the collected information to:</p>
+        <ul>
+            <li>Manage educational center operations</li>
+            <li>Track student progress and attendance</li>
+            <li>Generate financial reports</li>
+            <li>Facilitate teacher time tracking</li>
+            <li>Provide app functionality and updates</li>
+            <li>Ensure app security and prevent unauthorized access</li>
+        </ul>
+
+        <h2>4. Data Storage and Security</h2>
+        <p>Your data is stored securely using:</p>
+        <ul>
+            <li><strong>Supabase:</strong> Our secure cloud database provider</li>
+            <li><strong>Local Storage:</strong> Some data may be stored locally on your device for offline functionality</li>
+            <li><strong>Encryption:</strong> All passwords are encrypted and secure</li>
+        </ul>
+
+        <h2>5. Data Sharing</h2>
+        <p>We do not sell, trade, or share your personal information with third parties, except:</p>
+        <ul>
+            <li><strong>Service Providers:</strong> Supabase (database hosting) and Expo (app updates)</li>
+            <li><strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
+        </ul>
+
+        <h2>6. Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+            <li>Access your personal information</li>
+            <li>Request correction of inaccurate data</li>
+            <li>Request deletion of your account and associated data</li>
+            <li>Withdraw consent for data processing</li>
+        </ul>
+
+        <h2>7. Children's Privacy</h2>
+        <p>Our app is designed for educational centers and may contain information about students under 18. We collect student information only as necessary for educational management purposes and with appropriate administrative oversight.</p>
+
+        <h2>8. Camera Permissions</h2>
+        <p>We request camera access solely for QR code scanning to facilitate check-in/check-out functionality. No photos or videos are captured, stored, or transmitted.</p>
+
+        <h2>9. Data Retention</h2>
+        <p>We retain your information for as long as your account is active or as needed to provide services. You may request account deletion at any time.</p>
+
+        <h2>10. Updates to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. We will notify users of any material changes through the app or email.</p>
+
+        <h2>11. Third-Party Services</h2>
+        <p>Our app uses the following third-party services:</p>
+        <ul>
+            <li><strong>Supabase:</strong> Database and backend services</li>
+            <li><strong>Expo:</strong> App development platform and updates</li>
+        </ul>
+
+        <div class="contact-info">
+            <h2>12. Contact Us</h2>
+            <p>If you have questions about this Privacy Policy or your data, please contact us:</p>
+            <p><strong>Email:</strong> chetanlj@gmail.com<br>
+            <strong>App:</strong> ClassroomOS<br>
+            <strong>Developer:</strong> Chetan LJ</p>
+        </div>
+    </div>
+</body>
+</html>
