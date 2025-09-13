@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassroomOS Support</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f5;
+            color: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            padding: 2.5em;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+            color: #1a1a2e;
+            margin-bottom: 0.5em;
+        }
+        p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 2em;
+        }
+        .contact-button {
+            display: inline-block;
+            padding: 0.8em 1.8em;
+            background-color: #007aff;
+            color: #ffffff;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .contact-button:hover {
+            background-color: #005bb5;
+        }
+        .footer {
+            margin-top: 2em;
+            font-size: 0.8em;
+            color: #888899;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Support</h1>
+        <p>
+            If you have any questions, feedback, or require technical assistance with ClassroomOS, please feel free to reach out to our support team. We're here to help!
+        </p>
+        <button id="emailButton" class="contact-button" onclick="displayEmail()">Email Support</button>
+        <p class="footer">
+            &copy; 2025 CJ Digital Studios. All rights reserved.
+        </p>
+    </div>
+    <script>
+        function displayEmail() {
+            const emailButton = document.getElementById('emailButton');
+            emailButton.innerHTML = 'chetanj@gmail.com';
+        }
+    </script>
+</body>
+</html>
