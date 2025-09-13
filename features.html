@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClassroomOS - Complete Academy Management Solution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background: #171717;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(23, 23, 23, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(251, 191, 37, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fbbf24;
+            text-shadow: 0 2px 4px rgba(251, 191, 37, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #fbbf24;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #fbbf24;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #171717;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #171717 0%, #262626 100%);
+            padding: 120px 0 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(251, 191, 36, 0.08) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .hero-banner {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            width: 100%;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-banner img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(251, 191, 36, 0.3);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #a3a3a3;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .app-store-btn {
+            background: #262626;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            font-weight: 600;
+        }
+
+        .app-store-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.2);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 3rem 0;
+            background: rgba(251, 191, 36, 0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: #fbbf24;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: #a3a3a3;
+            font-weight: 500;
+        }
+
+        /* Screenshots Section */
+        .screenshots {
+            padding: 5rem 0;
+            background: #262626;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #fbbf24;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #a3a3a3;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .screenshot-card {
+            background: #171717;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.2);
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .screenshot-content {
+            padding: 1.5rem;
+        }
+
+        .screenshot-content h4 {
+            color: #fbbf24;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .screenshot-content p {
+            color: #a3a3a3;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background: #171717;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: #262626;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #fbbf24, #f59e0b);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.2);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: #171717;
+            font-weight: bold;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #a3a3a3;
+            line-height: 1.6;
+        }
+
+        /* User Types Section */
+        .user-types {
+            padding: 5rem 0;
+            background: #171717;
+        }
+
+        .user-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .user-type-card {
+            background: #262626;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        .user-type-card:hover {
+            transform: scale(1.05);
+        }
+
+        .user-type-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .user-type-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        .user-type-features {
+            list-style: none;
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+
+        .user-type-features li {
+            color: #a3a3a3;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .user-type-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #fbbf24;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #171717;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(251, 191, 36, 0.2);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #fbbf24;
+        }
+
+        .footer-section a {
+            color: #a3a3a3;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #fbbf24;
+        }
+
+        /* Floating Action Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #171717;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.4);
+            font-weight: bold;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .user-types-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .screenshots-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">ClassroomOS</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#screenshots">Screenshots</a></li>
+                <li><a href="#users">For Everyone</a></li>
+                <li><a href="#download">Download</a></li>
+            </ul>
+            <a href="#download" class="cta-btn">Get Started</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-banner">
+                <img src="https://raw.githubusercontent.com/chetanlj/classroomos-privacy-policy/main/images/banner.png" alt="ClassroomOS - Complete Academy Management">
+            </div>
+            <div class="hero-content">
+                <p>Streamline your educational institution with our comprehensive management system. Handle attendance, academics, finance, and administration all in one powerful mobile app.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="app-store-btn">
+                        📱 Download for iOS
+                    </a>
+                    <a href="#" class="app-store-btn">
+                        🤖 Get on Android
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Digital Management</p>
+                </div>
+                <div class="stat-item">
+                    <h3>3</h3>
+                    <p>User Types</p>
+                </div>
+                <div class="stat-item">
+                    <h3>15+</h3>
+                    <p>Core Features</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Access</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="screenshots" class="screenshots">
+        <div class="container">
+            <h2 class="section-title">Real App Screenshots</h2>
+            <p class="section-subtitle">See the actual ClassroomOS interface in action</p>
+            <div class="screenshots-grid">
+                <div class="screenshot-card">
+                    <img src="https://raw.githubusercontent.com/chetanlj/classroomos-privacy-policy/main/images/landing_page_main.jpg" alt="Login Screen">
+                    <div class="screenshot-content">
+                        <h4>Login Interface</h4>
+                        <p>Clean, secure login screen with the ClassroomOS branding and "Efficiency Meets Education" tagline</p>
+                    </div>
+                </div>
+                <div class="screenshot-card">
+                    <img src="https://raw.githubusercontent.com/chetanlj/classroomos-privacy-policy/main/images/admin-dashboard.jpg" alt="Admin Dashboard">
+                    <div class="screenshot-content">
+                        <h4>Admin Dashboard</h4>
+                        <p>Comprehensive admin interface with tabbed navigation for academics, attendance, finance, and admin functions</p>
+                    </div>
+                </div>
+                <div class="screenshot-card">
+                    <img src="https://raw.githubusercontent.com/chetanlj/classroomos-privacy-policy/main/images/custom-plan.jpg" alt="Custom Plan Creation">
+                    <div class="screenshot-content">
+                        <h4>Financial Planning</h4>
+                        <p>Advanced fee management with custom plans, grade selection, student assignment, and flexible discount options</p>
+                    </div>
+                </div>
+                <div class="screenshot-card">
+                    <img src="https://raw.githubusercontent.com/chetanlj/classroomos-privacy-policy/main/images/teacher-accounts.jpg" alt="Teacher Account Creation">
+                    <div class="screenshot-content">
+                        <h4>Account Management</h4>
+                        <p>Streamlined teacher account creation with personal details, credentials, and teaching assignment configuration</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Powerful Features</h2>
+            <p class="section-subtitle">Everything you need to run your academy efficiently</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Smart Attendance System</h3>
+                    <p>QR code-based check-in/check-out system with real-time tracking. Students can mark attendance by scanning QR codes, and administrators get instant visibility into daily attendance patterns.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Academic Management</h3>
+                    <p>Comprehensive test management, marks entry, and performance tracking. Create tests, enter marks, manage syllabus, and track student progress with detailed analytics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Financial Management</h3>
+                    <p>Complete fee management system with payment tracking, custom plans, discount options, and teacher hour logs. Handle all financial aspects of your academy seamlessly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Schedule Management</h3>
+                    <p>Create and manage class schedules, send announcements, and keep everyone informed about important dates and events with integrated calendar system.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Syllabus Tracking</h3>
+                    <p>Monitor syllabus completion, manage chapters and reference books, with approval workflows for teachers and administrators to ensure curriculum compliance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👤</div>
+                    <h3>Account Management</h3>
+                    <p>Easy creation and management of student and teacher accounts with role-based access control, secure authentication, and teaching assignment configuration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="users" class="user-types">
+        <div class="container">
+            <h2 class="section-title">Built for Everyone</h2>
+            <p class="section-subtitle">Tailored experiences for administrators, teachers, and students</p>
+            <div class="user-types-grid">
+                <div class="user-type-card">
+                    <div class="user-type-icon">⚙️</div>
+                    <h3>Administrators</h3>
+                    <p>Complete control over your academy</p>
+                    <ul class="user-type-features">
+                        <li>Manage student & teacher accounts</li>
+                        <li>Track attendance & academic performance</li>
+                        <li>Handle finances & fee management</li>
+                        <li>Create schedules & announcements</li>
+                        <li>Approve syllabus submissions</li>
+                        <li>Generate comprehensive reports</li>
+                    </ul>
+                </div>
+                <div class="user-type-card">
+                    <div class="user-type-icon">👨‍🏫</div>
+                    <h3>Teachers</h3>
+                    <p>Tools to enhance teaching effectiveness</p>
+                    <ul class="user-type-features">
+                        <li>Mark student attendance</li>
+                        <li>Enter test marks & results</li>
+                        <li>Update syllabus progress</li>
+                        <li>Track working hours</li>
+                        <li>Send announcements</li>
+                        <li>Monitor student performance</li>
+                    </ul>
+                </div>
+                <div class="user-type-card">
+                    <div class="user-type-icon">👨‍🎓</div>
+                    <h3>Students</h3>
+                    <p>Stay connected with your academy</p>
+                    <ul class="user-type-features">
+                        <li>QR code check-in/check-out</li>
+                        <li>View test results & grades</li>
+                        <li>Upload school marks</li>
+                        <li>Track syllabus progress</li>
+                        <li>Access payment history</li>
+                        <li>Receive important announcements</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="download">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <p><a href="#features">Features</a></p>
+                    <p><a href="#users">For Users</a></p>
+                    <p><a href="#screenshots">Screenshots</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <p><a href="#">Help Center</a></p>
+                    <p><a href="#">Contact Us</a></p>
+                    <p><a href="#">Privacy Policy</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <p><a href="#">About Us</a></p>
+                    <p><a href="#">Careers</a></p>
+                    <p><a href="#">Blog</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <p><a href="#">Twitter</a></p>
+                    <p><a href="#">LinkedIn</a></p>
+                    <p><a href="#">Facebook</a></p>
+                </div>
+            </div>
+            <p>&copy; 2025 ClassroomOS. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="floating-btn" onclick="scrollToTop()">
+        ↑
+    </div>
+
+    <script>
+        // Scroll to top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(23, 23, 23, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(251, 191, 36, 0.2)';
+            } else {
+                header.style.background = 'rgba(23, 23, 23, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Smooth reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards and user type cards
+        document.querySelectorAll('.feature-card, .user-type-card, .screenshot-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Add click animation to CTA buttons
+        document.querySelectorAll('.cta-btn, .app-store-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(251, 191, 36, 0.3)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add ripple animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Animate statistics on scroll
+        const animateStats = () => {
+            const stats = document.querySelectorAll('.stat-item h3');
+            stats.forEach(stat => {
+                const finalValue = stat.textContent;
+                if (finalValue.includes('%')) {
+                    animateNumber(stat, 0, 100, '%');
+                } else if (finalValue.includes('+')) {
+                    const num = parseInt(finalValue);
+                    animateNumber(stat, 0, num, '+');
+                } else if (finalValue.includes('/')) {
+                    stat.textContent = '24/7';
+                } else {
+                    const num = parseInt(finalValue);
+                    animateNumber(stat, 0, num, '');
+                }
+            });
+        };
+
+        const animateNumber = (element, start, end, suffix) => {
+            const duration = 2000;
+            const startTime = performance.now();
+            
+            const updateNumber = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = Math.floor(start + (end - start) * progress);
+                
+                element.textContent = current + suffix;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(updateNumber);
+                }
+            };
+            
+            requestAnimationFrame(updateNumber);
+        };
+
+        // Trigger stats animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>
